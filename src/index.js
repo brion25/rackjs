@@ -1,4 +1,5 @@
 import {createServer} from "http";
+import {parse} from "url";
 import {createProxyServer} from "http-proxy";
 import {ParentNotFound} from "./error";
 
@@ -19,9 +20,12 @@ class Rack{
       if(!routes[parentPath])
         ParentNotFound(res);
       else{
+        let url = parse(routes[parentPath].url);
         req.url = newUrl.substring(indexChildPath);
+        req.headers.host = url.host;
+        req.headers.hostname = url.hostname;
         proxy.web(req,res, {
-          target : routes[parentPath].url
+          target : url
         });
       }
     });
