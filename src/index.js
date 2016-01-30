@@ -12,8 +12,18 @@ class Rack{
     self = this;
 
     let server = createServer((req,res) => {
-      let parentPath = req.url.split('/')[1];
-      if(!routes[parentPath]) ParentNotFound(res);
+      let newUrl = req.url.replace('/',''),
+          indexChildPath = newUrl.indexOf('/'),
+          parentPath = newUrl.substring(0,indexChildPath);
+
+      if(!routes[parentPath])
+        ParentNotFound(res);
+      else{
+        req.url = newUrl.substring(indexChildPath);
+        proxy.web(req,res, {
+          target : routes[parentPath].url
+        });
+      }
     });
 
     console.log(`Server is listening at port : ${options.port || 8000}`);
