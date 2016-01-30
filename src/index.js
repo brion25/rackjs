@@ -20,9 +20,9 @@ class Rack{
     server.listen(options.port || 8000);
   }
   route(route,params){
-    routes[route];
+    routes[route] = params;
     return self;
   }
 }
 
-export default Rack;
+module.exports = Rack;
