@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img height="257" width="114" src="https://raw.githubusercontent.com/brion25/rackjs/feaure/read-config/assets/rack-logo.png">
+    <img height="93" width="149" src="https://raw.githubusercontent.com/brion25/rackjs/feaure/read-config/assets/rack-logo.png">
   </a>
 </p>
 
