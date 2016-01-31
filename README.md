@@ -19,13 +19,13 @@ First you need to install it globally to have access to the command
 npm install -g rackjs
 ```
 
-Then you need to install it on your folder app, to access to the `rack` options
+To access to the `rack` options install it using the command:
 
 ```
 npm install rackjs
 ```
 
-Then you need to create a file named: `rackfile.js`, because that file is the one that is going to be executed, when you run the command `rack`
+And finally, create a file named: `rackfile.js`, because that file is the one that is going to be executed, when you run the command `rack`
 
 ## How is this possible?
 
