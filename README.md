@@ -13,8 +13,16 @@ The main purpose of Rack is to serve 1 endpoint for all your endpoints:
 
 ## Installation
 
+First you need to install it globally to have access to the command
+
 ```
 npm install -g rackjs
+```
+
+Then you need to install it on your folder app, to access to the `rack` options
+
+```
+npm install rackjs
 ```
 
 Then you need to create a file named: `rackfile.js`, because that file is the one that is going to be executed, when you run the command `rack`
