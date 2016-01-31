@@ -1,6 +1,6 @@
 {
   "name": "rackjs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "1 endpoint for all your endpoints",
   "main": "./lib/index.js",
   "scripts": {
@@ -16,6 +16,10 @@
   "bugs": {
     "url": "https://github.com/brion25/rackjs/issues"
   },
+  "keywords" : [
+    "server",
+    "proxy"
+  ],
   "homepage": "https://github.com/brion25/rackjs#readme",
   "bin": {
     "rack": "./bin/rack.js"
