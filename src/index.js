@@ -1,9 +1,7 @@
-import {log} from 'log-util';
+import log from 'log-util';
 import Server from './server';
 
 global.log = log;
-
-const proxy = createProxyServer({});
 
 var self = null,
     routes = {};
@@ -23,8 +21,8 @@ class Rack{
     if(cb){
       server.listen(self.options || 8000,cb);
     }else{
-      server.listen(options.port || 8000, function(){
-        log.info(`Server is listening at port : ${options.port || 8000}`);
+      server.listen(self.options.port || 8000, function(){
+        log.verbose(`Server is listening at port : ${self.options.port || 8000}`);
       });
     }
   }

@@ -1,7 +1,9 @@
 import {createProxyServer} from 'http-proxy';
 import {parse} from 'url';
 import {createServer} from 'http';
-import {ParentNotFound} from './error-handler/error';
+import {ParentNotFound} from './error-handlers/error';
+
+const proxy = createProxyServer({});
 
 export default Server;
 
@@ -14,6 +16,7 @@ function Server(routes){
     if(!routes[parentPath])
       ParentNotFound(parentPath,res);
     else{
+      log.info(`[${req.method}] ${req.url}`);
       let url = parse(routes[parentPath].url);
       req.url = newUrl.substring(indexChildPath);
       req.headers.host = url.host;
