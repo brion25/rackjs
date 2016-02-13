@@ -59,7 +59,8 @@ proxy
   })
   .route('test',{
     url : 'http://localhost:7000'
-  });
+  })
+  .start();
 
 /*
 Now to access to the server http://localhost:8000,
@@ -76,6 +77,8 @@ access to: http://localhost:3000/test
    - `serverName` - `string` which is going to be name of the server and it's going to be the parent path on your rack, the remaining options: `path`, `querystring`, `headers`, etc. is going to pass to the server instance.
    - `serverOptions` - `object`which is going to have the options for that server
      - `url` - URL of the server to wrap into rack
+ - `start` - `function` to start the server
+   - `callback` - `function` which is going to be executed when the server starts
 
 ## Comments
 
