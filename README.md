@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img height="93" width="149" src="https://raw.githubusercontent.com/brion25/rackjs/feaure/read-config/assets/rack-logo.png">
+    <img height="93" width="149" src="https://raw.githubusercontent.com/brion25/rackjs/master/assets/rack-logo.png">
   </a>
 </p>
 
@@ -9,7 +9,7 @@
 
 The main purpose of Rack is to serve 1 endpoint for all your endpoints:
 
-![Rack overview](https://raw.github.com/brion25/rackjs/feaure/read-config/assets/rack-desc-exp.png)
+![Rack overview](https://raw.github.com/brion25/rackjs/master/assets/rack-desc-exp.png)
 
 ## Installation
 
@@ -25,8 +25,13 @@ To access to the `rack` options install it using the command:
 npm install rackjs
 ```
 
-And finally, create a file named: `rackfile.js`, because that file is the one that is going to be executed, when you run the command `rack`
+And finally, create a file named: `rackfile.js`, because that file is the one that is going to be executed, when you run the command `rack`.
 
+Type `--help` to see the commands available:
+
+```
+rack --help
+```
 ## How is this possible?
 
 Basically, you name each one of your endpoints, this name will be the master path, then the rest of the path will be passed to the specified endpoint, ex:
@@ -54,10 +59,14 @@ proxy
   })
   .route('test',{
     url : 'http://localhost:7000'
-  });
+  })
+  .start();
 
 /*
-Now to access to the server http://localhost:8000, you just need to access to: http://localhost:3000/domain and to access to http://localhost:7000, you need to access to: http://localhost:3000/test
+Now to access to the server http://localhost:8000,
+you just need to access to: http://localhost:3000/domain
+and to access to http://localhost:7000, you need to
+access to: http://localhost:3000/test
 */
 ```
 ### Rack Options
@@ -68,7 +77,10 @@ Now to access to the server http://localhost:8000, you just need to access to: h
    - `serverName` - `string` which is going to be name of the server and it's going to be the parent path on your rack, the remaining options: `path`, `querystring`, `headers`, etc. is going to pass to the server instance.
    - `serverOptions` - `object`which is going to have the options for that server
      - `url` - URL of the server to wrap into rack
+ - `start` - `function` to start the server
+   - `callback` - `function` which is going to be executed when the server starts
 
 ## Comments
 
+ - **[2016 - 02 - 12]** - Logging was improved
  - **[2016 - 01 - 30]** - Module still under development, it's not recommended to use it on production.

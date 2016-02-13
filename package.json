@@ -1,11 +1,11 @@
 {
   "name": "rackjs",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "1 endpoint for all your endpoints",
   "main": "./lib/index.js",
   "scripts": {
     "compile": "babel -d lib/ src/",
-    "prepublish":"npm run compile"
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/brion25/rackjs/issues"
   },
-  "keywords" : [
+  "keywords": [
     "server",
     "proxy"
   ],
@@ -25,7 +25,10 @@
     "rack": "./bin/rack.js"
   },
   "dependencies": {
-    "http-proxy": "^1.12.0"
+    "commander": "^2.9.0",
+    "http-proxy": "^1.12.0",
+    "log-util": "^1.1.1",
+    "yargs": "^3.32.0"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
@@ -33,7 +36,7 @@
     "babel-core": "^6.4.5",
     "babel-preset-es2015": "^6.3.13"
   },
-  "babel":{
+  "babel": {
     "presets": [
       "es2015"
     ]

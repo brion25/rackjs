@@ -1,9 +1,6 @@
-import {createServer} from "http";
-import {parse} from "url";
-import {createProxyServer} from "http-proxy";
-import {ParentNotFound} from "./error";
+import {argv} from 'yargs';
+import Server from './server';
 
-const proxy = createProxyServer({});
 
 var self = null,
     routes = {};
@@ -11,31 +8,31 @@ var self = null,
 class Rack{
   constructor(options){
     self = this;
-
-    let server = createServer((req,res) => {
-      let newUrl = req.url.replace('/',''),
-          indexChildPath = newUrl.indexOf('/'),
-          parentPath = newUrl.substring(0,indexChildPath);
-
-      if(!routes[parentPath])
-        ParentNotFound(res);
-      else{
-        let url = parse(routes[parentPath].url);
-        req.url = newUrl.substring(indexChildPath);
-        req.headers.host = url.host;
-        req.headers.hostname = url.hostname;
-        proxy.web(req,res, {
-          target : url
-        });
-      }
-    });
-
-    console.log(`Server is listening at port : ${options.port || 8000}`);
-    server.listen(options.port || 8000);
+    self.options = options || {}
+    if(!argv.log && argv.log !== undefined){
+      log.verbose(`Logging has been muted`);
+      log.verbose = function(){};
+      log.error = function(){};
+      log.info = function(){};
+      log.warn = function(){};
+      log.debug = function(){};
+      global.log = log;
+    }
   }
   route(route,params){
     routes[route] = params;
+    log.verbose(`Route with name : '${route}' has been set`);
     return self;
+  }
+  start(cb){
+    const server = Server(routes);
+    if(cb){
+      server.listen(self.options || 8000,cb);
+    }else{
+      server.listen(self.options.port || 8000, function(){
+        log.verbose(`Server is listening at port : ${self.options.port || 8000}`);
+      });
+    }
   }
 }
 
