@@ -16,7 +16,7 @@ function Server(routes){
     if(!routes[parentPath])
       ParentNotFound(parentPath,res);
     else{
-      log.info(`[${req.method}] ${req.url}`);
+      log.debug(`[${req.method}] ${req.url}`);
       let url = parse(routes[parentPath].url);
       req.url = newUrl.substring(indexChildPath);
       req.headers.host = url.host;

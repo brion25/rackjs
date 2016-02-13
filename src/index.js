@@ -1,7 +1,6 @@
-import log from 'log-util';
+import {argv} from 'yargs';
 import Server from './server';
 
-global.log = log;
 
 var self = null,
     routes = {};
@@ -10,6 +9,15 @@ class Rack{
   constructor(options){
     self = this;
     self.options = options || {}
+    if(!argv.log && argv.log !== undefined){
+      log.verbose(`Logging has been muted`);
+      log.verbose = function(){};
+      log.error = function(){};
+      log.info = function(){};
+      log.warn = function(){};
+      log.debug = function(){};
+      global.log = log;
+    }
   }
   route(route,params){
     routes[route] = params;
