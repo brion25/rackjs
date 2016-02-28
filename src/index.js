@@ -1,4 +1,5 @@
 import {argv} from 'yargs';
+import RackParams from './helpers/rack-params';
 import Server from './server';
 
 
@@ -20,7 +21,7 @@ class Rack{
     }
   }
   route(route,params){
-    routes[route] = params;
+    routes[route] = new RackParams(params).getParams();
     log.verbose(`Route with name : '${route}' has been set`);
     return self;
   }
